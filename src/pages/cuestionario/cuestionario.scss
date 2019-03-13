@@ -1,0 +1,7 @@
+
+page-cuestionario {
+	.my-class .alert-md .alert-wrapper {
+		    max-width: 94% !important;
+		    background:map-get($colors, primary) !important;
+		}
+}

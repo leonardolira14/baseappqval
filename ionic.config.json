@@ -1,0 +1,12 @@
+{
+  "name": "Qval",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "proxies": {
+    "path": "/httpapi",
+    "proxyUrl": "http://cors.api.com/httpapi"
+  },
+  "pro_id": "832c8c07"
+}

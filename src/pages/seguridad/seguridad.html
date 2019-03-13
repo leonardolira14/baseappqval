@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Seguridad</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ 
+    Podrás cambiar la contraseña de acceso  a tu cuenta.
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Contraseña Actual</ion-label>
+      <ion-input [(ngModel)]="clave1" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nueva Contraseña</ion-label>
+      <ion-input [(ngModel)]="clave2" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Repetir Contraseña</ion-label>
+      <ion-input [(ngModel)]="clave3" type="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button full color="primary" (click)="update_clave()">Guardar</button>
+  <p>
+    Recuenda que la constraseña debe ser mayor a 7 Digitos, debe contener una mayúscula, un carácter especial (-,/,*,~,+,) y una minúscula.
+  </p>
+</ion-content>

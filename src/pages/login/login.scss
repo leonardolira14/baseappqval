@@ -1,0 +1,17 @@
+page-login {
+    & .btn-scann{
+        width: 200px;
+        height: auto;
+    }
+    & .logo{
+        position: relative;
+        max-width: 50%;
+        height: auto;
+    }
+    & .text-blue{
+        color:#005d8f;
+    }
+    & button{
+        text-transform: uppercase;
+    }
+}

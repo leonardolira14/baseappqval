@@ -1,0 +1,63 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Cuestionario</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-list>
+		<form [formGroup]="frmcuestionario">
+			<ion-item formArrayName="orders" *ngFor="let order of frmcuestionario.controls.orders.controls; let i = index"   >
+				<ion-label *ngIf="cuestionarios[i].Forma=='DIAS' || cuestionarios[i].Forma=='HORAS' || cuestionarios[i].Forma=='MINUTOS' || cuestionarios[i].Forma=='SEGUNDOS' || cuestionarios[i].Forma=='AB'" floating><p>{{cuestionarios[i].Pregunta}}</p></ion-label>
+				<ion-label *ngIf="cuestionarios[i].Forma=='SI/NO' || cuestionarios[i].Forma=='SI/NO/NA' || cuestionarios[i].Forma=='SI/NO/NS' || cuestionarios[i].Forma=='ML' " ><p>{{cuestionarios[i].Pregunta}}</p></ion-label>
+				<ion-label *ngIf="cuestionarios[i].Forma=='MLC'" ><p>{{cuestionarios[i].Pregunta}}</p></ion-label>
+
+				<ion-select [formControlName]="i" *ngIf="cuestionarios[i].Forma=='SI/NO'"    submitText="Ok" cancelText="Cancelar">
+					<ion-option value="SI">SI</ion-option>
+					<ion-option value="NO">NO</ion-option>
+				</ion-select>
+
+				<ion-select [formControlName]="i" *ngIf="cuestionarios[i].Forma=='SI/NO/NA'"  submitText="Ok" cancelText="Cancelar">
+						<ion-option value="SI">SI</ion-option>
+						<ion-option value="NO">NO</ion-option>
+						<ion-option value="NA">No Aplica</ion-option> 
+				</ion-select>
+
+				<ion-select [formControlName]="i" *ngIf="cuestionarios[i].Forma=='SI/NO/NS'" submitText="Ok" cancelText="Cancelar">
+						<ion-option value="SI">SI</ion-option>
+						<ion-option value="NO">NO</ion-option>
+						<ion-option value="NS">NO Sabe</ion-option> 
+				</ion-select>
+
+				<ion-select [formControlName]="i" *ngIf="cuestionarios[i].Forma=='SI/NO/NA/NS'" submitText="Ok" cancelText="Cancelar">
+						<ion-option value="SI">SI</ion-option>
+						<ion-option value="NO">NO</ion-option>
+						<ion-option value="NS">NO Sabe</ion-option> 
+						<ion-option value="NA">No Aplica</ion-option> 
+				</ion-select>
+
+				<ion-select [formControlName]="i" *ngIf="cuestionarios[i].Forma=='ML'" submitText="Ok"  cancelText="Cancelar">
+						<ion-option value="{{items}}" *ngFor="let items of cuestionario_lista.getrespuestajson(cuestionarios[i].Num)">{{items}}</ion-option>
+				</ion-select>
+
+				<ion-input [formControlName]="i"  *ngIf="cuestionarios[i].Forma=='DIAS' || cuestionarios[i].Forma=='HORAS' || cuestionarios[i].Forma=='MINUTOS' || cuestionarios[i].Forma=='SEGUNDOS'" value=""  placeholder="0" type="number"  ></ion-input>
+
+				<ion-input [formControlName]="i"  *ngIf="cuestionarios[i].Forma=='AB'" value="" type="text"  placeholder=""></ion-input>
+				
+				<ion-select [formControlName]="i"  *ngIf="cuestionarios[i].Forma=='MLC'"  multiple="true">
+					<ion-option [value]='items' selected="false" *ngFor="let items of cuestionario_lista.getrespuestajson(cuestionarios[i].Num)">{{items}}</ion-option>
+				</ion-select>
+
+						
+			</ion-item>
+		</form>
+	</ion-list>
+<div padding>
+	<button ion-button (click)="select_calificar()" full>Calificar</button>
+</div>
+	   	
+</ion-content>

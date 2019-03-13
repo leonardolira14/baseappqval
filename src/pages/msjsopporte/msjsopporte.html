@@ -1,0 +1,36 @@
+
+<ion-header>
+
+    <ion-navbar color="primary">
+        
+      <ion-title>
+        Soporte Técnico
+      </ion-title>
+  
+      
+    </ion-navbar>
+  
+  </ion-header>
+
+
+<ion-content padding #content id="content">
+   <ion-card *ngFor="let cuerpo of mensajes">
+        <ion-card-header>
+                {{cuerpo.nombreemisor}} dice:
+        </ion-card-header>
+        <ion-card-content>
+                {{cuerpo.mensaje}}
+        </ion-card-content>
+   </ion-card>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-input  [(ngModel)]="message" placeholder="Mensaje"></ion-input>
+        <ion-buttons end>
+                <button (click)="sendMessage()" ion-button icon-only color="secondary">
+                        Enviar
+                        <ion-icon name="send"></ion-icon>
+                </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,29 @@
+<ion-menu [content]="NAV">
+    <ion-header >
+        <ion-navbar color="primary" >
+            <ion-title text-center >
+                Menu
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content>
+        <ion-list >
+            <button (click)="gotopage(page.component)" ion-item *ngFor="let page of pages" menuClose>
+                    <ion-icon item-left color="alight-gray" name="{{page.icon}}"></ion-icon>                
+                    {{page.titulo}}
+                
+            </button> 
+            <button ion-item (click)="cerrarapp()" >
+                    <ion-icon item-left color="alight-gray"  name="power"></ion-icon>
+                        Salir sin cerrar sesión
+                      
+            </button>
+            <button ion-item  (click)="cerrarsesion()" >
+                <ion-icon item-left color="alight-gray"  name="log-out"></ion-icon>
+                        Cerrar sesión
+                
+            </button>             
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav #NAV [root]="rootPage"></ion-nav>
