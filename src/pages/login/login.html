@@ -19,7 +19,7 @@
                   <ion-list >
                     <ion-item>
                         <ion-label color="primary" stacked>Correo Electrónico</ion-label>
-                        <ion-input formControlName="correo" type="email"></ion-input>
+                        <ion-input formControlName="correo" [(ngModel)]="correo" type="email"></ion-input>
                     </ion-item>
                 
                     <ion-item>
@@ -39,7 +39,7 @@
               <button (click)="logueo()" [disabled]="!datos.valid" round icon-start ion-button full color="primary"><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon> Ingresar</button>
           </ion-col>
             <ion-col col-6 text-center>
-                <button round icon-start ion-button full color="primary"><ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> Escanear Qr</button>
+                <button (click)="scann()" round icon-start ion-button full color="primary"><ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> Escanear Qr</button>
             </ion-col>
             <ion-col col-12 text-center class="m-t-30">
                 <button   ion-button full color="primary" (click)="recuperar()" outline> Recuperar Constraseña</button>

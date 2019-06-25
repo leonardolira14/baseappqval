@@ -4,4 +4,19 @@ page-cuestionario {
 		    max-width: 94% !important;
 		    background:map-get($colors, primary) !important;
 		}
+		ion-list + ion-list {
+			margin-top: 0;
+		  }
+		& .ratingspan{
+			background: map-get($colors, primary );
+			color: #fff;
+			font-size: 1.5rem;
+			float: right;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			border-radius: 50%;
+			justify-content: center;
+			align-items: center;
+		  }
 }

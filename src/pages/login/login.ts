@@ -7,7 +7,7 @@ import { RecuperacontraPage } from '../recuperacontra/recuperacontra';
 import { HttpProvider } from '../../providers/http/http';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { PrincipalPage } from '../principal/principal';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 
 @IonicPage()
@@ -19,7 +19,8 @@ export class LoginPage {
   path : string = 'http://192.168.0.3/appqval/';
   public datos : FormGroup;
   formlogin: FormData;
-  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,public http: HttpProvider,private formBuilder: FormBuilder) {
+  correo="";
+  constructor(private barcodeScanner: BarcodeScanner,public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams,public http: HttpProvider,private formBuilder: FormBuilder) {
     this.datos=this.formBuilder.group({
         correo:['',[Validators.required,Validators.email]],
         clave:['',Validators.required],
@@ -63,8 +64,24 @@ export class LoginPage {
       this.alertinfo("",res["datos"]);
      }
     }, (err) => {
-      this.alertinfo("Alerta",err);
+      this.alertinfo("Alerta",JSON.stringify(err));
     });
+  }
+  scann(){
+    this.barcodeScanner.scan({
+      disableSuccessBeep: false,
+      showFlipCameraButton : false,//boton para cambiar las camaras
+      torchOn: false,//led
+      prompt : "Coloca el QR en el recuadro",
+    }).then(barcodeData => {
+      var resultado=barcodeData.text;
+      this.correo=resultado
+      this.datos["correo"]=resultado;
+     //this.presentToast(resultado);
+     }).catch(err => {
+      //this.navCtrl.push(ErrorPage,{error:JSON.stringify(err)})
+      //this.presentToast("Error: "+JSON.stringify(err));
+     });
   }
 
 }

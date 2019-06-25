@@ -20,8 +20,11 @@
 
 <ion-content>
 <ion-list>
-  <button ion-item *ngFor="let resultado of resultados" (click)="selecrealiza_recibe(resultado.Num,resultado.config,resultado.numconfig)">
-     <h2>{{resultado.Nombre}}</h2>
-  </button>
+  <div *ngFor="let resultado of resultados;">
+      <button ion-item *ngFor="let resultadoss of resultado" (click)="selecrealiza_recibe(resultadoss.Num,resultadoss.config,resultadoss.numconfig)">
+          <h2>{{resultadoss.Nombre}}</h2>
+       </button>
+  </div>
+  
 </ion-list>
 </ion-content>

@@ -80,7 +80,8 @@ export class ResultadosbusquedaPage {
     this.http.buscarrazonsocial(palabra)
    .subscribe(res => {
     this.loading.dismiss()
-     this.resultados=res["empresas"]["Res"];
+     this.resultados=res["empresas"];
+     console.log(this.resultados)
      if(this.resultados.length==0){
        if(this.tipo=="recibe"){
           this.navCtrl.setRoot(RecibircalificacionPage);
@@ -163,10 +164,14 @@ export class ResultadosbusquedaPage {
       let datos=Array({tipo:"recibe",datos_emisor:{"empresa":num,"perfil":config,"IDPerfil":numconfig},datos_receptora:{"usuario":usuario,"empresa":empresa,"IDPerfil":configemiso,"perfil":"I"}});
       this.http.solicitarcuestionariorealiza(datos)
       .subscribe(res=>{
+        if(res["pass"] == 0){
+          this.alertinfo("Alerta","No tiene relación para calificar");
+        }else
+        {
         localStorage.removeItem("ambas");
        // this.loading_preparando.dismiss();
         this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(res),datoscalifica:JSON.stringify(datos)});
-        
+         }
       },(err)=>{
         console.log(err)
       })
@@ -183,9 +188,16 @@ export class ResultadosbusquedaPage {
       let configemiso=this.datosusuario.datos.IDConfig;
       let datos=Array({tipo:"realiza",datos_receptora:{"empresa":num,"perfil":config,"IDPerfil":numconfig},datos_emisor:{"usuario":usuario,"empresa":empresa,"IDPerfil":configemiso,"perfil":"I"}});
       this.http.solicitarcuestionariorealiza(datos)
-      .subscribe(res=>{
+      .subscribe((res)=>{
         this.loading_preparando.dismiss();
-        this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(res),datoscalifica:JSON.stringify(datos)});
+        if(res["pass"] == 0){
+          this.alertinfo("Alerta","No tiene relación para calificar");
+        }else
+        {
+          this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(res),datoscalifica:JSON.stringify(datos)});
+        }
+        
+        
         
       },(err)=>{
         console.log(err);

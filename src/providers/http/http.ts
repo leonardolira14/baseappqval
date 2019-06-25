@@ -14,8 +14,8 @@ export class HttpProvider {
   basepath="/httpapi";
   public url:any;
   constructor(public http: HttpClient,private _platform: Platform) {
-    this.url='https://testqval.admyo.com/serverqval/';
-    //this.url='http://localhost/serverqvalapp/';
+    this.url='https://qval.admyo.com/server_app/';
+    //this.url='http://192.168.0.2/qval/qval_app/serverqvalapp/';
     if(this._platform.is("cordova")){
       this.basepath="http://cors.api.com";
       

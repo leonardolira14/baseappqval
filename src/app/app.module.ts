@@ -34,6 +34,12 @@ import { ErrorPage } from  '../pages/error/error';
 import {  environment } from '../evironments/environment';
 import { WebsocketProvider } from '../providers/http/websocket';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DatetimePickerModule } from 'ion-datetime-picker-sn';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
 const config: SocketIoConfig = { url: environment.wsURL, options: {} };
 @NgModule({
   declarations: [
@@ -59,10 +65,16 @@ const config: SocketIoConfig = { url: environment.wsURL, options: {} };
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      monthShortNames: ['en', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ag',  'sept', 'oct', 'nov', 'dic' ],
+      dayNames: ['Domingo','Lunes', 'Martes','Miercoles','Jueves','Viernes','Sabado'],
+      dayShortNames: ['Dom','Lun', 'Mar', 'Mier','Jue','Vie','Sab'],
+      
+    }),
     HttpClientModule,
     SocketIoModule.forRoot(config),
- 
+    DatetimePickerModule, 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -91,6 +103,7 @@ const config: SocketIoConfig = { url: environment.wsURL, options: {} };
     HttpProvider,
     UtilsService,BarcodeScanner,
     WebsocketProvider,
+    Camera,FileTransfer, FileTransferObject,File,FileChooser,FilePath
     
   ]
 })

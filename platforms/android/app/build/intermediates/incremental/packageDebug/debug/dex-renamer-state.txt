@@ -1,4 +1,4 @@
-#Wed Jan 30 14:52:25 CST 2019
-base.0=C\:\\xampp\\htdocs\\app\\qvalv3\\Qval\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Fri Apr 26 15:52:42 CDT 2019
+base.0=C\:\\xampp\\htdocs\\qval\\qval_app\\qval\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
