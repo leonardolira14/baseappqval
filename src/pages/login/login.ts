@@ -59,6 +59,7 @@ export class LoginPage {
       console.log()
      if(res["pass"]!==0){
        localStorage.setItem("datosuaurio",JSON.stringify(res));
+       
        this.navCtrl.setRoot(PrincipalPage);
      }else{
       this.alertinfo("",res["datos"]);

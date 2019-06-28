@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\xampp\\htdocs\\qval\\qval_app\\qval\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\xampp\\htdocs\\aqppqval2\\app\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sistemas\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\ecc2fa4f311178f54de8bdd9b634f83c\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\3a693708f6832764b2583a8a0516a67f\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

@@ -15,6 +15,7 @@ export class HttpProvider {
   public url:any;
   constructor(public http: HttpClient,private _platform: Platform) {
     this.url='https://qval.admyo.com/server_app/';
+    //this.url='http://192.168.8.7/serverqvalapp/';
     //this.url='http://192.168.0.2/qval/qval_app/serverqvalapp/';
     if(this._platform.is("cordova")){
       this.basepath="http://cors.api.com";
@@ -32,6 +33,7 @@ export class HttpProvider {
     return this.http.post( this.url+'empresas/buscar',JSON.stringify(palabra));
   }
   solicitarcuestionariorealiza(datos){
+    console.log(this.url)
     return this.http.post(this.url+'calificaciones/realiza',JSON.stringify(datos));
   }
   //funcion para agregar el cuestionario la servidor ya calificado
@@ -52,5 +54,12 @@ export class HttpProvider {
   }
   busca_usuario_recibe(usuario){
     return this.http.post(this.url+"calificaciones/recibeapp",{datos:JSON.stringify(usuario)});
+  }
+  //funcion para validar la contraseña
+  validate_pasword_cliente(datos){
+    return this.http.post(this.url+"clientes/checkpass",datos);
+  }
+  update_clave_cleinte(datos){
+    return this.http.post(this.url+"clientes/updatepass",datos)
   }
 }

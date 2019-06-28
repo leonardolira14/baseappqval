@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\xampp\\htdocs\\qval\\qval_app\\qval\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
+            "outputFile": "C:\\xampp\\htdocs\\aqppqval2\\app\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sistemas\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\de37069c3d7f8165c20d4bbd8a59a650\\res\\values-ky\\values-ky.xml",
+                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\2bad2f534a1e417dd0ac39205c08aeb3\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

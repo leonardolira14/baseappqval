@@ -41,6 +41,8 @@ import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
 const config: SocketIoConfig = { url: environment.wsURL, options: {} };
+
+import { SMS } from '@ionic-native/sms';
 @NgModule({
   declarations: [
     MyApp,
@@ -97,6 +99,7 @@ const config: SocketIoConfig = { url: environment.wsURL, options: {} };
     ,VrealizadasPage,VrecibidasPage,ErrorPage
   ],
   providers: [
+    SMS,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

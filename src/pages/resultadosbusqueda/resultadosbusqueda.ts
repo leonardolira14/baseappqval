@@ -5,6 +5,10 @@ import { PrincipalPage} from '../principal/principal';
 import { CuestionarioPage } from '../cuestionario/cuestionario';
 import { RealizarcalificacionPage } from '../realizarcalificacion/realizarcalificacion';
 import { RecibircalificacionPage } from  '../recibircalificacion/recibircalificacion'; 
+
+import { SMS } from '@ionic-native/sms';
+
+
 /**
  * Generated class for the ResultadosbusquedaPage page.
  *
@@ -25,7 +29,10 @@ export class ResultadosbusquedaPage {
   public loading = this.Load.create({content: 'Cargado',});
   public loading_preparando = this.Load.create({content: 'Solicitando Preguntas',});
   public datosoffline:any;
-  constructor(public Load:LoadingController, public http: HttpProvider,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
+  public loandings:any;
+  constructor(
+    private sms:SMS,
+    public Load:LoadingController, public http: HttpProvider,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
    this.palabra=navParams.get("palabra");
    this.tipo=navParams.get("tipo");
    if(localStorage.offline){
@@ -34,6 +41,72 @@ export class ResultadosbusquedaPage {
    this.decicion_off();
    this.datosusuario=JSON.parse(localStorage.datosuaurio);
    
+  }
+  create_payload(texto){
+    this.loandings= this.Load.create({content: texto});
+    this.loandings.present();
+  }
+  alertpassword(titulo,texto,empresa,tipo){
+    let alert = this.alertCtrl.create({
+      title:titulo,
+      message: texto,
+      inputs: [
+        {
+          name: 'contrasena',
+          placeholder: 'Contraseña',
+          type:'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cerrar',
+          handler: data => {
+            
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: data => {
+            this.check_pass(data.contrasena,empresa,tipo);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  alertmandarpass(titulo,texto,numero,empresa,tipo){
+    let alert = this.alertCtrl.create({
+      title:titulo,
+      message: texto,
+      inputs: [
+        {
+          name: 'contrasena',
+          placeholder: 'Contraseña',
+          type:'password'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cerrar',
+          handler: data => {
+            
+          }
+        },
+        {
+          text: 'Enviar SMS',
+          handler: data => {
+            this.enviar_sms(numero,empresa,tipo);
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: data => {
+            this.check_pass(data.contrasena,empresa,tipo);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
   alertinfo(titulo,texto){
     let alert = this.alertCtrl.create({
@@ -157,20 +230,34 @@ export class ResultadosbusquedaPage {
     if(numconfig==="0"){
       this.alertinfo("Alerta","Esta empresa no tiene un grupo asignado.");
      }else{
-      //this.loading_preparando.present();
+      this.loading_preparando.present();
       let usuario=this.datosusuario.datos.IDUsuario;
       let empresa=this.datosusuario.datos.IDEmpresa;
       let configemiso=this.datosusuario.datos.IDConfig;
       let datos=Array({tipo:"recibe",datos_emisor:{"empresa":num,"perfil":config,"IDPerfil":numconfig},datos_receptora:{"usuario":usuario,"empresa":empresa,"IDPerfil":configemiso,"perfil":"I"}});
       this.http.solicitarcuestionariorealiza(datos)
       .subscribe(res=>{
+        this.loading_preparando.dismiss();
         if(res["pass"] == 0){
           this.alertinfo("Alerta","No tiene relación para calificar");
         }else
         {
-        localStorage.removeItem("ambas");
-       // this.loading_preparando.dismiss();
-        this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(res),datoscalifica:JSON.stringify(datos)});
+          console.log(res);
+          
+          localStorage.removeItem("ambas");
+          if(res["Tipoperfil"]==="I"){
+            this.alertpassword("Login",'Para poder calificar a este usuario, por favor ingresa tu contraseña y presiona ACEPTAR.',num,res["Tipoperfil"]);
+          }else{
+            if(res["datosempresa"]["Actipass"]==='1'){
+              const datos_yen={datos,res};
+              localStorage.setItem("datoscalificacion",JSON.stringify(datos_yen));
+              this.alertmandarpass("Login","Por favor ingresa tu contraseña de acceso y presiona ACEPTAR. En caso de que no tengas o no te acuerdes de tu contraseña presiona <strong>ENVIAR SMS</strong> para que se te envíe una nueva contraseña al teléfono "+res["datosempresa"]["Telcontact"]+". En el caso de que no sea tu número de teléfono, el gestor de "+this.datosusuario["empresa"][0]["RazonSocial"]+" tendrá que cambiarlo",res["datosempresa"]["Telcontact"],res["datosempresa"]["IDCliente"],res["Tipoperfil"]);
+            }else{
+              this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(res),datoscalifica:JSON.stringify(datos)});
+            }
+          }
+         
+       
          }
       },(err)=>{
         console.log(err)
@@ -179,6 +266,7 @@ export class ResultadosbusquedaPage {
     console.log(num,config,numconfig);
   }
   calificar(num,config,numconfig){ 
+     
     if(numconfig==="0"){
      this.alertinfo("Alerta","Esta empresa no tiene un grupo asignado.");
     }else{
@@ -227,5 +315,44 @@ export class ResultadosbusquedaPage {
     });
     return cuestionarios;
   }
-
+  enviar_sms(numero,empresa,tipo){
+    this.create_payload("Cargando datos");
+    if(numero==="" || numero===null || numero===undefined || numero.length<10){
+      this.alertinfo("Alerta","El número que esta registrado no es valido, porfavor contacta al adminstrador.");
+    }else{
+      const datos={empresa}
+      this.http.update_clave_cleinte(datos)
+      .subscribe(resp=>{
+        this.loandings.dismiss();
+        this.create_payload("Enviando SMS");
+        this.sms.send('+52'+numero,'La contraseña para qvaluation es: '+resp["clave"])
+        .then(data=>{
+          this.loandings.dismiss();
+          this.alertpassword("Contraseña",'Verifica los SMS en tu teléfono, ingresa la contraseña que se te ha enviado y presiona ACEPTAR',empresa,tipo);
+        },error=>{
+          this.loandings.dismiss();
+          this.alertinfo("Alerta","Error: "+JSON.stringify(error));
+        })
+        
+      })
+      
+    }
+    
+  }
+  check_pass(clave,idempresa,tipo){
+    //mando la contraseña para saber si es la correcta
+    this.loading_preparando.present()
+    const datos={clave,idempresa,tipo}
+    this.http.validate_pasword_cliente(datos)
+    .subscribe(resp=>{
+      this.loading_preparando.dismiss()
+      if(resp["ok"]===true){
+        const datos_calif=JSON.parse(localStorage.datoscalificacion);
+        this.navCtrl.push(CuestionarioPage,{cuestionario:JSON.stringify(datos_calif["res"]),datoscalifica:JSON.stringify(datos_calif["datos"])});
+      }else{
+        this.alertinfo("Alerta","Contraseña incorrecta");  
+      }
+      
+    })
+  }
 }
