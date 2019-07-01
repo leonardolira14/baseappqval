@@ -107,14 +107,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-sms-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-sms-plugin@1.0.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-android-permissions": {
     "source": {
       "type": "registry",
@@ -135,6 +127,14 @@
     "source": {
       "type": "registry",
       "id": "cordova.plugins.diagnostic@5.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-sms": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-sms@1.0.5"
     },
     "is_top_level": true,
     "variables": {}

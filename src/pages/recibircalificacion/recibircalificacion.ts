@@ -8,7 +8,7 @@ import { ToastController } from 'ionic-angular';
 import { ErrorPage } from '../error/error';
 import { CuestionarioPage } from '../cuestionario/cuestionario'
 import { HttpProvider } from '../../providers/http/http';
-import { SMS } from '@ionic-native/sms/ngx';
+
 /**
  * Generated class for the RecibircalificacionPage page.
  *
@@ -31,7 +31,7 @@ export class RecibircalificacionPage {
   public loandings:any;
   public loading_preparando = this.Load.create({content: 'Solicitando Preguntas',});
   constructor(
-    private sms:SMS,
+
     public Load:LoadingController,
     public http: HttpProvider,public toastCtrl: ToastController,private barcodeScanner: BarcodeScanner,public alertCtrl: AlertController,private formBuilder: FormBuilder,public navCtrl: NavController, public navParams: NavParams) {
     this.datosusuario=JSON.parse(localStorage.getItem("datosuaurio"));
@@ -243,7 +243,7 @@ export class RecibircalificacionPage {
 
   enviar_sms(numero,empresa,tipo){
    
-    if(numero==="" || numero===null || numero===undefined || numero.length<10){
+   /* if(numero==="" || numero===null || numero===undefined || numero.length<10){
       this.alertinfo("Alerta","El número que esta registrado no es valido, porfavor contacta al adminstrador.");
     }else{
       const datos={empresa}
@@ -263,7 +263,7 @@ export class RecibircalificacionPage {
         
       })
       
-    }
+    }*/
     
   }
   check_pass(clave,idempresa,tipo){

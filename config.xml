@@ -87,7 +87,6 @@
     <plugin name="cordova-plugin-file" spec="6.0.1" />
     <plugin name="cordova-plugin-filepath" spec="1.5.1" />
     <plugin name="cordova-plugin-filechooser" spec="1.2.0" />
-    <plugin name="cordova-sms-plugin" spec="1.0.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-permission" spec="^0.1.0" />
     <plugin name="cordova.plugins.diagnostic" spec="5.0.0">
@@ -97,5 +96,6 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.1.1" />
     </plugin>
     <plugin name="cordova-plugin-android-permissions" spec="1.0.0" />
+    <plugin name="cordova-plugin-sms" spec="1.0.5" />
     <engine name="android" spec="8.0.0" />
 </widget>

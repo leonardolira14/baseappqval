@@ -41,9 +41,6 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.admyo.qvalv2"
     },
-    "cordova-sms-plugin": {
-      "PACKAGE_NAME": "com.admyo.qvalv2"
-    },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.admyo.qvalv2"
     },
@@ -59,6 +56,9 @@
     },
     "cordova.plugins.diagnostic": {
       "ANDROID_SUPPORT_VERSION": "28.+",
+      "PACKAGE_NAME": "com.admyo.qvalv2"
+    },
+    "cordova-plugin-sms": {
       "PACKAGE_NAME": "com.admyo.qvalv2"
     }
   },

@@ -9,7 +9,7 @@ import { DgofflinePage} from '../pages/dgoffline/dgoffline';
 import{ PrincipalPage } from '../pages/principal/principal';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-
+declare var cordova:any;
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,7 +19,7 @@ export class MyApp {
   public pages: Array<{titulo:string,component:any,icon:string}>;
  private platform: Platform;
   constructor(
-    private androidPermison:AndroidPermissions,
+    private androidPermissions:AndroidPermissions,
     private diagnostic: Diagnostic,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     this.platform=platform;
     
@@ -57,16 +57,15 @@ export class MyApp {
     this.nav.setRoot(HomePage);
   }
   getPermission() {
-    this.androidPermison.checkPermission(this.androidPermison.PERMISSION.SEND_SMS).then(
-      result =>{
-        if(result.hasPermission===false){
-          this.androidPermison.requestPermission(this.androidPermison.PERMISSION.SEND_SMS);
-        }
-      }, 
-      err => this.androidPermison.requestPermission(this.androidPermison.PERMISSION.SEND_SMS)
-    );
-    
-    this.androidPermison.requestPermission(this.androidPermison.PERMISSION.SEND_SMS);
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_SMS)
+    .then( success => {
+      if(success.hasPermission===false)
+      {
+        this .androidPermissions.requestPermission(this .androidPermissions.PERMISSION.READ_SMS);
+      }
+    }, 
+    err => this.androidPermissions.requestPermission( this.androidPermissions.PERMISSION.READ_SMS) 
+    ); 
   }
 }
 

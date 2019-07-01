@@ -14,14 +14,24 @@ export class WebsocketProvider {
   public socketstatus:boolean=false;
   public usuario:Usuario=null;
   public datosusuario:any=[];
+  public nombre:string;
+  public empresa:string;
   constructor(public http: HttpClient,private socket: Socket) {
     this.datosusuario=JSON.parse(localStorage.getItem("datosuaurio"));
+    this.checkStatus();
   }
   checkStatus(){
+    if(localStorage.getItem("datosuaurio")){
+      this.nombre= this.datosusuario["datos"]["Nombre"]+" "+this.datosusuario["datos"]["Apellidos"];
+      this.empresa=this.datosusuario["datos"]["IDEmpresa"]
+     }else{
+       this.nombre="usuario desde el home";
+       this.empresa="S/N Empresa"
+     }
     this.socket.on('connect',()=>{
       console.log("conectado al servidor");
       this.socketstatus=true;
-      this.loginWS(this.datosusuario["datos"]["Nombre"]+" "+this.datosusuario["datos"]["Apellidos"],this.datosusuario["datos"]["IDEmpresa"])
+      this.loginWS(this.nombre,this.empresa)
     })
     this.socket.on('disconnect',()=>{
       console.log("desconecato del servidor");
@@ -44,7 +54,11 @@ export class WebsocketProvider {
   loginWS(nombre:string,empresa:string){
     return new Promise((resolve,reject)=>{
       console.log("configuarar usario");
-      this.emit('configurar-usuario',{nombre},(resp)=>{
+      const payload={
+        nombre,
+        empresa
+      }
+      this.emit('configurar-usuario',payload,(resp)=>{
       this.usuario=new Usuario(nombre,empresa);
           resolve();        
       })

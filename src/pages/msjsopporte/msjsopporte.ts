@@ -31,15 +31,23 @@ export class MsjsopportePage implements OnInit,OnDestroy {
   public datosusuario:any=[];
   public usuariosActivosObs:Observable<any>;
   public idsporte:string;
+  public nombre:string;
+  public empresa:string;
   constructor(public wsServices:WebsocketProvider,public chatService:UtilsService,public navCtrl: NavController, public navParams: NavParams) {
    this.usuariosActivosObs= this.chatService.usuario_soporte();
    this.usuariosActivosObs.subscribe((respuesta)=>{
    console.log(respuesta["clientes"][0]["id"]);
     this.idsporte=respuesta["clientes"][0]["id"];
   })
-  
+    if(localStorage.getItem("datosuaurio")){
+     this.nombre= this.datosusuario["datos"]["Nombre"]+" "+this.datosusuario["datos"]["Apellidos"];
+     this.empresa=this.datosusuario["datos"]["IDEmpresa"]
+    }else{
+      this.nombre="usuario desde el home";
+      this.empresa="S/N Empresa"
+    }
     this.datosusuario=JSON.parse(localStorage.getItem("datosuaurio"));
-    this.wsServices.loginWS(this.datosusuario["datos"]["Nombre"]+" "+this.datosusuario["datos"]["Apellidos"],this.datosusuario["datos"]["IDEmpresa"])
+    this.wsServices.loginWS(this.nombre,this.empresa)
   }
   ngOnDestroy(){
    this.usuariosActivosObs

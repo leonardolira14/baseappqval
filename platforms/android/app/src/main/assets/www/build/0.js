@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 781:
+/***/ 779:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72,7 +72,7 @@ var RealizadasPage = /** @class */ (function () {
     };
     RealizadasPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-realizadas',template:/*ion-inline-start:"C:\xampp\htdocs\aqppqval2\app3\src\pages\realizadas\realizadas.html"*/'<!--\n\n  Generated template for the RealizadasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>realizadas</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\xampp\htdocs\aqppqval2\app3\src\pages\realizadas\realizadas.html"*/,
+            selector: 'page-realizadas',template:/*ion-inline-start:"C:\xampp\htdocs\qval\qval_app\qval\src\pages\realizadas\realizadas.html"*/'<!--\n\n  Generated template for the RealizadasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>realizadas</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\xampp\htdocs\qval\qval_app\qval\src\pages\realizadas\realizadas.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]])
     ], RealizadasPage);
