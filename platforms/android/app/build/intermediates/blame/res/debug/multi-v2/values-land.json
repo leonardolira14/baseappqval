@@ -1,16 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\xampp\\htdocs\\aqppqval2\\app\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "C:\\xampp\\htdocs\\aqppqval2\\app3\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\3a693708f6832764b2583a8a0516a67f\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\pc\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\bf21991f499a2cd32d8d51bcbc0512a9\\res\\values-land\\values-land.xml",
                     "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,125,189,260",
-                        "endColumns": "69,63,70,67",
-                        "endOffsets": "120,184,255,323"
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
                     }
                 }
             ]

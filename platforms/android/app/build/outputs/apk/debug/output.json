@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":40014},"path":"app-debug.apk","properties":{"packageId":"com.admyo.qvalv2","split":"","minSdkVersion":"19"}}]
+[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":40015,"versionName":"4.0.15","enabled":true,"outputFile":"app-debug.apk","fullName":"debug","baseName":"debug"},"path":"app-debug.apk","properties":{}}]

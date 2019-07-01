@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":40015},"path":"app-release-unsigned.apk","properties":{"packageId":"com.admyo.qvalv2","split":"","minSdkVersion":"19"}}]
+[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":40022,"versionName":"4.0.22","enabled":true,"outputFile":"app-release-unsigned.apk","fullName":"release","baseName":"release"},"path":"app-release-unsigned.apk","properties":{}}]

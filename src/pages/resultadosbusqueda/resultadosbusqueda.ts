@@ -6,8 +6,9 @@ import { CuestionarioPage } from '../cuestionario/cuestionario';
 import { RealizarcalificacionPage } from '../realizarcalificacion/realizarcalificacion';
 import { RecibircalificacionPage } from  '../recibircalificacion/recibircalificacion'; 
 
-import { SMS } from '@ionic-native/sms';
-
+import { SMS } from '@ionic-native/sms/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+declare var cordova:any;
 
 /**
  * Generated class for the ResultadosbusquedaPage page.
@@ -31,6 +32,7 @@ export class ResultadosbusquedaPage {
   public datosoffline:any;
   public loandings:any;
   constructor(
+    private androidPermison:AndroidPermissions,
     private sms:SMS,
     public Load:LoadingController, public http: HttpProvider,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
    this.palabra=navParams.get("palabra");
@@ -315,6 +317,7 @@ export class ResultadosbusquedaPage {
     });
     return cuestionarios;
   }
+  
   enviar_sms(numero,empresa,tipo){
     this.create_payload("Cargando datos");
     if(numero==="" || numero===null || numero===undefined || numero.length<10){

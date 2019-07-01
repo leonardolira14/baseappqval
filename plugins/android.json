@@ -50,6 +50,16 @@
     "phonegap-plugin-barcodescanner": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.admyo.qvalv2"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.admyo.qvalv2"
+    },
+    "cordova-plugin-permission": {
+      "PACKAGE_NAME": "com.admyo.qvalv2"
+    },
+    "cordova.plugins.diagnostic": {
+      "ANDROID_SUPPORT_VERSION": "28.+",
+      "PACKAGE_NAME": "com.admyo.qvalv2"
     }
   },
   "dependent_plugins": {}

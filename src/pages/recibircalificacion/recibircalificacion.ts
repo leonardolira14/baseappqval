@@ -3,12 +3,12 @@ import { IonicPage, NavController, NavParams,AlertController, LoadingController 
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { PrincipalPage} from '../principal/principal';
 import { ResultadosbusquedaPage } from '../resultadosbusqueda/resultadosbusqueda';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from 'ionic-angular';
 import { ErrorPage } from '../error/error';
 import { CuestionarioPage } from '../cuestionario/cuestionario'
 import { HttpProvider } from '../../providers/http/http';
-import { SMS } from '@ionic-native/sms';
+import { SMS } from '@ionic-native/sms/ngx';
 /**
  * Generated class for the RecibircalificacionPage page.
  *

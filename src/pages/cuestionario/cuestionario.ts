@@ -5,15 +5,15 @@ import { HttpProvider} from '../../providers/http/http';
 import { PrincipalPage } from '../principal/principal';
 import { RecibircalificacionPage } from '../recibircalificacion/recibircalificacion';
 import { ErrorPage } from '../error/error';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
-import { FileChooser } from '@ionic-native/file-chooser';
-import { FilePath } from '@ionic-native/file-path';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { CuestionariosList } from '../../classes/cuestionario_lts'
 import { reduce } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Camera } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @IonicPage()
 @Component({

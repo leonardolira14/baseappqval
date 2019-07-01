@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController} from 'ionic-angula
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { ResultadosbusquedaPage} from '../resultadosbusqueda/resultadosbusqueda';
 import { PrincipalPage} from '../principal/principal';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from 'ionic-angular';
 import { ErrorPage } from '../error/error';
 import { CuestionarioPage } from '../cuestionario/cuestionario';

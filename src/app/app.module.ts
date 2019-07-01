@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -29,20 +29,22 @@ import { ResultadosbusquedaPage } from '../pages/resultadosbusqueda/resultadosbu
 import { CuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { VrealizadasPage } from '../pages/vrealizadas/vrealizadas';
 import { VrecibidasPage } from '../pages/vrecibidas/vrecibidas';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ErrorPage } from  '../pages/error/error';
 import {  environment } from '../evironments/environment';
 import { WebsocketProvider } from '../providers/http/websocket';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { DatetimePickerModule } from 'ion-datetime-picker-sn';
-import { Camera } from '@ionic-native/camera';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
-import { FileChooser } from '@ionic-native/file-chooser';
-import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 const config: SocketIoConfig = { url: environment.wsURL, options: {} };
 
-import { SMS } from '@ionic-native/sms';
+import { SMS } from '@ionic-native/sms/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 @NgModule({
   declarations: [
     MyApp,
@@ -99,6 +101,8 @@ import { SMS } from '@ionic-native/sms';
     ,VrealizadasPage,VrecibidasPage,ErrorPage
   ],
   providers: [
+    AndroidPermissions,
+    Diagnostic,
     SMS,
     StatusBar,
     SplashScreen,

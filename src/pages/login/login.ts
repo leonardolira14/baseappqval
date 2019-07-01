@@ -7,7 +7,7 @@ import { RecuperacontraPage } from '../recuperacontra/recuperacontra';
 import { HttpProvider } from '../../providers/http/http';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { PrincipalPage } from '../principal/principal';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 
 @IonicPage()

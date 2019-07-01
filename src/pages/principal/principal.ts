@@ -5,7 +5,7 @@ import { MenuconfigPage } from '../menuconfig/menuconfig';
 import { HttpProvider } from '../../providers/http/http';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 import { ResultadosbusquedaPage} from '../resultadosbusqueda/resultadosbusqueda';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ToastController } from 'ionic-angular';
 import { ErrorPage } from '../error/error';
 import { CuestionarioPage } from '../cuestionario/cuestionario'
