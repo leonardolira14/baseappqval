@@ -1,5 +1,5 @@
-import { Component,ViewChild } from '@angular/core';
-import { Platform,Nav } from 'ionic-angular';
+import { Component,ViewChild, OnInit } from '@angular/core';
+import { Platform,Nav,LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HomePage } from '../pages/home/home';
@@ -7,20 +7,19 @@ import { RealizarcalificacionPage } from '../pages/realizarcalificacion/realizar
 import { RecibircalificacionPage } from '../pages/recibircalificacion/recibircalificacion';
 import { DgofflinePage} from '../pages/dgoffline/dgoffline';
 import{ PrincipalPage } from '../pages/principal/principal';
-import { Diagnostic } from '@ionic-native/diagnostic/ngx';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { WebsocketProvider }from '../providers/http/websocket'
 declare var cordova:any;
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   @ViewChild('NAV') nav : Nav;
   public rootPage:any;
   public pages: Array<{titulo:string,component:any,icon:string}>;
  private platform: Platform;
   constructor(
-    private androidPermissions:AndroidPermissions,
-    private diagnostic: Diagnostic,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    public wsSocket:WebsocketProvider,
+    platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     this.platform=platform;
     
     
@@ -36,7 +35,6 @@ export class MyApp {
       
       statusBar.styleDefault();
       splashScreen.hide();
-      this.getPermission();
       if(localStorage.datosuaurio){
       this.gotopage(PrincipalPage);
       }else{
@@ -45,7 +43,9 @@ export class MyApp {
     });
 
   }
-  
+  ngOnInit(){
+    this.wsSocket.checkStatus();
+  }
   gotopage(page){
     this.nav.setRoot(page);
   }
@@ -56,16 +56,6 @@ export class MyApp {
     localStorage.clear();
     this.nav.setRoot(HomePage);
   }
-  getPermission() {
-    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_SMS)
-    .then( success => {
-      if(success.hasPermission===false)
-      {
-        this .androidPermissions.requestPermission(this .androidPermissions.PERMISSION.READ_SMS);
-      }
-    }, 
-    err => this.androidPermissions.requestPermission( this.androidPermissions.PERMISSION.READ_SMS) 
-    ); 
-  }
+  
 }
 

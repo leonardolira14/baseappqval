@@ -18,7 +18,7 @@ export class WebsocketProvider {
   public empresa:string;
   constructor(public http: HttpClient,private socket: Socket) {
     this.datosusuario=JSON.parse(localStorage.getItem("datosuaurio"));
-    this.checkStatus();
+   
   }
   checkStatus(){
     if(localStorage.getItem("datosuaurio")){
@@ -59,14 +59,39 @@ export class WebsocketProvider {
         empresa
       }
       this.emit('configurar-usuario',payload,(resp)=>{
-      this.usuario=new Usuario(nombre,empresa);
+        console.log(resp);
+        if(resp.ok===false){
+          alert(resp.idaapmensajes)
+        }else{
+          localStorage.setItem("idappmensajes",resp.idaapmensajes);
+        }
+        
           resolve();        
       })
 
     })
   }
+  mandar_sms(numero,clave,idempresa,tipo){
+    return new Promise((resolve,reject)=>{
+      console.log("mandar_sms");
+      let payload={
+        numero,
+        clave,
+        idempresa,
+        tipo
+      }
+      this.emit('mandar-sms',payload,(resp)=>{
+        console.log(resp);
+        if(resp.ok===false){
+          alert(resp.respuesta)
+        }
+        resolve(); 
+      })
+    })
+  }
   getUsuario(){
     return this.usuario;
   }
+  
 
 }

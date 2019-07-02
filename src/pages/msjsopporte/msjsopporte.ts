@@ -47,7 +47,7 @@ export class MsjsopportePage implements OnInit,OnDestroy {
       this.empresa="S/N Empresa"
     }
     this.datosusuario=JSON.parse(localStorage.getItem("datosuaurio"));
-    this.wsServices.loginWS(this.nombre,this.empresa)
+  
   }
   ngOnDestroy(){
    this.usuariosActivosObs
@@ -55,9 +55,9 @@ export class MsjsopportePage implements OnInit,OnDestroy {
   ngOnInit(){
     
     //this.idsporte=this.usuariosActivosObs["clientes"][0]["id"]
-    
-   this.chatService.getmessageprivate().subscribe(msj=>{
-      this.mensajes.push(msj)
+
+   this.chatService.respuestasms().subscribe(msj=>{
+      alert(msj);
       
       //this.scrollToBottom();
     })
@@ -87,7 +87,9 @@ export class MsjsopportePage implements OnInit,OnDestroy {
     this.chatService.mensaje_soporte(this.wsServices.usuario.nombre,this.message,this.idsporte);
     this.message="";
   }
- 
+ sendsms(){
+  // this.chatService.enviar_sms('947389474738947','8948');
+ }
   
   
 }

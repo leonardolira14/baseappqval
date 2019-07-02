@@ -40,4 +40,11 @@ export class UtilsService {
     emitirUsuariosActivos(){
       return this.wsService.emit('obtener-usuarios');
     }
+    //esto es para mandar un sms no devulve nada masque una alerta
+    enviar_sms(numero,clave,idempresa,tipo){
+      this.wsService.mandar_sms(numero,clave,idempresa,tipo);
+    }
+    respuestasms(){
+      return this.wsService.listen('respuesta-sms');
+    }
  }

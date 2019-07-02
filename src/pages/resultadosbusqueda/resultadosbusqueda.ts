@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { PrincipalPage} from '../principal/principal';
@@ -7,6 +7,10 @@ import { RealizarcalificacionPage } from '../realizarcalificacion/realizarcalifi
 import { RecibircalificacionPage } from  '../recibircalificacion/recibircalificacion'; 
 
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Observable,Subscription } from 'rxjs';
+import { WebsocketProvider }from '../../providers/http/websocket'
+import { UtilsService } from '../../providers/http/servicio';
+
 declare var cordova:any;
 declare var SMS:any;
 /**
@@ -21,7 +25,7 @@ declare var SMS:any;
   selector: 'page-resultadosbusqueda',
   templateUrl: 'resultadosbusqueda.html',
 })
-export class ResultadosbusquedaPage {
+export class ResultadosbusquedaPage implements OnInit {
   public resultados:any=[];
   public palabra: any;
   public tipo:any;
@@ -31,7 +35,8 @@ export class ResultadosbusquedaPage {
   public datosoffline:any;
   public loandings:any;
   constructor(
-
+    public wsServices:WebsocketProvider,
+    public chatService:UtilsService,
     private androidPermison:AndroidPermissions,
     public Load:LoadingController, public http: HttpProvider,public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams) {
    this.palabra=navParams.get("palabra");
@@ -42,6 +47,18 @@ export class ResultadosbusquedaPage {
    this.decicion_off();
    this.datosusuario=JSON.parse(localStorage.datosuaurio);
    
+  }
+  ngOnInit(){
+    this.chatService.respuestasms().subscribe(msj=>{
+      this.loandings.dismiss();
+      if(msj["respuesta"]===true){
+        
+        this.alertpassword("Login",'Verifica los SMS en tu teléfono, ingresa la contraseña que se te ha enviado y presiona ACEPTAR',msj["idempresa"],msj["tipo"]);
+      }else{
+        this.alertinfo("Alerta",msj["mensaje"]);
+      }
+      
+    })
   }
   create_payload(texto){
     this.loandings= this.Load.create({content: texto});
@@ -316,14 +333,9 @@ export class ResultadosbusquedaPage {
     });
     return cuestionarios;
   }
+  
+   
   enviar_sms(numero,empresa,tipo){
-    SMS.sendSMS('+52'+numero,'La contraseña para qvaluation es: ',resp=>{
-      console.log(resp)
-    },error=>{
-      console.log(error)
-    })
-  }
-  /*enviar_sms(numero,empresa,tipo){
    this.create_payload("Cargando datos");
     if(numero==="" || numero===null || numero===undefined || numero.length<10){
       this.alertinfo("Alerta","El número que esta registrado no es valido, porfavor contacta al adminstrador.");
@@ -333,20 +345,13 @@ export class ResultadosbusquedaPage {
       .subscribe(resp=>{
         this.loandings.dismiss();
         this.create_payload("Enviando SMS");
-        this.sms.send('+52'+numero,'La contraseña para qvaluation es: '+resp["clave"])
-        .then(data=>{
-          this.loandings.dismiss();
-          this.alertpassword("Contraseña",'Verifica los SMS en tu teléfono, ingresa la contraseña que se te ha enviado y presiona ACEPTAR',empresa,tipo);
-        },error=>{
-          this.loandings.dismiss();
-          this.alertinfo("Alerta","Error: "+JSON.stringify(error));
-        })
         
+        this.chatService.enviar_sms(numero,resp["clave"],empresa,tipo);        
       })
       
     }
     
-  }*/
+  }
   check_pass(clave,idempresa,tipo){
     //mando la contraseña para saber si es la correcta
     this.loading_preparando.present()
